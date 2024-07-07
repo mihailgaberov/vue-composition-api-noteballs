@@ -8,44 +8,32 @@
             </div>
             <div class="field is-grouped is-grouped-right">
                 <div class="control">
-                    <button :disabled="!newNote" class="button is-link has-background-success" @click="addNote">Add New
+                    <button :disabled="!newNote" @click="addNote" class="button is-link has-background-success">Add New
                         Note</button>
                 </div>
             </div>
         </div>
-        <Note @delete-note="deleteNote" v-for="note in notes" :key="note.id" :note="note" />
+        <Note v-for="note in storeNotes.notes" :key="note.id" :note="note" @delete-note="deleteNote" />
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import Note from '@/components/Notes/Note.vue';
+import { useNotesStore } from '@/stores/storeNotes';
 
 const newNote = ref('');
 const newNoteRef = ref(null);
 
-const notes = ref([
-    {
-        id: 1,
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-    },
-    {
-        id: 2,
-        content: 'This is shorter.',
-    },
-]);
+const storeNotes = useNotesStore();
 
 const addNote = () => {
-    const id = new Date().getTime().toString();
-    notes.value.unshift({
-        id,
-        content: newNote.value,
-    });
-    newNote.value = '';
-    newNoteRef.value.focus();
+    storeNotes.addNote(newNote.value)
+    newNote.value = ''
+    newNoteRef.value.focus()
 };
 
-const deleteNote = (id) => {
-    notes.value = notes.value.filter((note) => note.id !== id);
-};
+// const deleteNote = (id) => {
+//     notes.value = notes.value.filter((note) => note.id !== id);
+// };
 </script>
