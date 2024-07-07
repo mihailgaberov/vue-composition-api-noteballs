@@ -23,8 +23,8 @@ export const useNotesStore = defineStore('storeNotes', {
             });
 
         },
-        deleteNote(index) {
-            this.notes.splice(index, 1)
+        deleteNote(idToDelete) {
+            this.notes = this.notes.filter(({ id }) => id !== idToDelete)
         },
         editNote({ index, note }) {
             this.notes[index] = note
