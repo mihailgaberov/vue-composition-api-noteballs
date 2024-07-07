@@ -3,7 +3,7 @@
         <div class="card has-background-success-dark p-4 mb-5">
             <div class="field">
                 <div class="control">
-                    <textarea v-model="newNote" class="textarea" placeholder="Add a new note" />
+                    <textarea ref="newNoteRef" v-model="newNote" class="textarea" placeholder="Add a new note" />
                 </div>
             </div>
             <div class="field is-grouped is-grouped-right">
@@ -31,6 +31,7 @@
 import { ref } from 'vue';
 
 const newNote = ref('');
+const newNoteRef = ref(null);
 
 const notes = ref([
     {
@@ -44,10 +45,12 @@ const notes = ref([
 ]);
 
 const addNote = () => {
-    notes.value.push({
-        id: notes.value.length + 1,
+    const id = new Date().getTime().toString();
+    notes.value.unshift({
+        id,
         content: newNote.value,
     });
     newNote.value = '';
+    newNoteRef.value.focus();
 };
 </script>
