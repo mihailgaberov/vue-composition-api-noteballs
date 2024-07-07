@@ -12,20 +12,12 @@
                 </div>
             </div>
         </div>
-        <div class="card mb-4" v-for="i in 3">
-            <p class="card-header-title">Component</p>
-            <button class="card-header-icon" aria-label="more options">
-                <span class="icon">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-            </button>
+        <div class="card mb-4" v-for="note in notes" :key="note.id">
             <div class="card-content">
                 <div class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-                    iaculis mauris.
-                    <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+                    {{ note.content }}
                     <br />
-                    <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    <small>{{ note.date }}</small>
                 </div>
             </div>
             <footer class="card-footer">
@@ -35,3 +27,25 @@
         </div>
     </div>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+
+const notes = ref([
+    {
+        id: 1,
+        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
+        date: '11:09 PM - 1 Jan 2016',
+    },
+    {
+        id: 2,
+        content: 'This is shorter.',
+        date: '11:09 PM - 1 Jan 2016',
+    },
+    {
+        id: 3,
+        content: 'Another short one.',
+        date: '11:09 PM - 1 Jan 2016',
+    },
+]);
+</script>
