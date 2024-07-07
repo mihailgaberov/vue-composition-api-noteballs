@@ -3,12 +3,13 @@
         <div class="card has-background-success-dark p-4 mb-5">
             <div class="field">
                 <div class="control">
-                    <textarea class="textarea" placeholder="Add a new note" />
+                    <textarea v-model="newNote" class="textarea" placeholder="Add a new note" />
                 </div>
             </div>
             <div class="field is-grouped is-grouped-right">
                 <div class="control">
-                    <button class="button is-link has-background-success">Add New Note</button>
+                    <button :disabled="!newNote" class="button is-link has-background-success" @click="addNote">Add New
+                        Note</button>
                 </div>
             </div>
         </div>
@@ -16,8 +17,6 @@
             <div class="card-content">
                 <div class="content">
                     {{ note.content }}
-                    <br />
-                    <small>{{ note.date }}</small>
                 </div>
             </div>
             <footer class="card-footer">
@@ -31,21 +30,24 @@
 <script setup>
 import { ref } from 'vue';
 
+const newNote = ref('');
+
 const notes = ref([
     {
         id: 1,
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
-        date: '11:09 PM - 1 Jan 2016',
     },
     {
         id: 2,
         content: 'This is shorter.',
-        date: '11:09 PM - 1 Jan 2016',
-    },
-    {
-        id: 3,
-        content: 'Another short one.',
-        date: '11:09 PM - 1 Jan 2016',
     },
 ]);
+
+const addNote = () => {
+    notes.value.push({
+        id: notes.value.length + 1,
+        content: newNote.value,
+    });
+    newNote.value = '';
+};
 </script>
