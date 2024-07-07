@@ -1,5 +1,5 @@
 <template>
-    <div class="card has-background-success-dark p-4 mb-5">
+    <div class="card p-4 mb-5" :class="`has-background-${bgColor}-dark`">
         <div class="field">
             <div class="control">
                 <textarea ref="textAreaRef" @input="$emit('update:modelValue', $event.target.value)" class="textarea"
@@ -21,6 +21,10 @@ const props = defineProps({
     modelValue: {
         type: String,
         required: true,
+    },
+    bgColor: {
+        type: String,
+        default: 'success',
     }
 })
 
