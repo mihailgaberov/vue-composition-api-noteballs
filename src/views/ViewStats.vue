@@ -37,5 +37,5 @@ import { useWatchCharacters } from '@/use/useWatchCharacters';
 const notesStore = useNotesStore();
 
 const loveNoteballs = ref('')
-useWatchCharacters(loveNoteballs);
+useWatchCharacters(loveNoteballs, 50);
 </script>
