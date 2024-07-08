@@ -1,8 +1,9 @@
 <template>
     <div class="edit-note">
-        <AddEditNote ref="addEditNoteRef" v-model="noteContent" bgColor="link">
+        <AddEditNote ref="addEditNoteRef" v-model="noteContent" bgColor="link" placeholder="Edit note..."
+            label="Edit Note">
             <template #buttons>
-                <button class="button is-link has-background-success" :disabled="!noteContent">Save Note</button>
+                <button class="button is-link has-background-link" :disabled="!noteContent">Save Note</button>
             </template>
         </AddEditNote>
     </div>

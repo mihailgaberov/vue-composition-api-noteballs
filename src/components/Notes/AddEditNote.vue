@@ -1,9 +1,10 @@
 <template>
     <div class="card p-4 mb-5" :class="`has-background-${bgColor}-dark`">
+        <label v-if="label" class="label has-text-white">{{ label }}</label>
         <div class="field">
             <div class="control">
                 <textarea ref="textAreaRef" @input="$emit('update:modelValue', $event.target.value)" class="textarea"
-                    placeholder="Add a new note" />
+                    :placeholder="placeholder" />
             </div>
         </div>
         <div class="field is-grouped is-grouped-right">
@@ -25,7 +26,14 @@ const props = defineProps({
     bgColor: {
         type: String,
         default: 'success',
-    }
+    },
+    placeholder: {
+        type: String,
+        default: 'Add a new note',
+    },
+    label: {
+        type: String,
+    },
 })
 
 const emit = defineEmits(['update:modelValue'])
