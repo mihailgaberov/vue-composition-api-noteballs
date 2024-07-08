@@ -4,7 +4,7 @@
         <div class="field">
             <div class="control">
                 <textarea ref="textAreaRef" v-model="internalValue" @input="updateValue" class="textarea"
-                    :placeholder="placeholder" />
+                    :placeholder="placeholder" v-auto-focus/>
             </div>
         </div>
         <div class="field is-grouped is-grouped-right">
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 const props = defineProps({
     modelValue: {
@@ -57,4 +57,10 @@ const focusTextarea = () => {
 defineExpose({
     focusTextarea,
 });
+
+const vAutoFocus = {
+    mounted: (el) => {
+        el.focus();
+    },
+}
 </script>
