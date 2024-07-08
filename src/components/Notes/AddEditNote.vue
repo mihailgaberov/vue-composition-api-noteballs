@@ -16,7 +16,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch } from 'vue';
+import { vAutoFocus } from '@/directives/vAutoFocus';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
     modelValue: {
@@ -57,10 +58,4 @@ const focusTextarea = () => {
 defineExpose({
     focusTextarea,
 });
-
-const vAutoFocus = {
-    mounted: (el) => {
-        el.focus();
-    },
-}
 </script>
