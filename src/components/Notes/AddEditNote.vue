@@ -3,7 +3,7 @@
         <label v-if="label" class="label has-text-white">{{ label }}</label>
         <div class="field">
             <div class="control">
-                <textarea ref="textAreaRef" @input="$emit('update:modelValue', $event.target.value)" class="textarea"
+                <textarea ref="textAreaRef" v-model="internalValue" @input="updateValue" class="textarea"
                     :placeholder="placeholder" />
             </div>
         </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
     modelValue: {
@@ -34,17 +34,27 @@ const props = defineProps({
     label: {
         type: String,
     },
-})
+});
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue']);
+
+const internalValue = ref(props.modelValue);
+
+const updateValue = () => {
+    emit('update:modelValue', internalValue.value);
+};
+
+watch(() => props.modelValue, (newValue) => {
+    internalValue.value = newValue;
+});
 
 const textAreaRef = ref(null);
 
 const focusTextarea = () => {
     textAreaRef.value.focus();
-}
+};
 
 defineExpose({
-    focusTextarea
-})
+    focusTextarea,
+});
 </script>

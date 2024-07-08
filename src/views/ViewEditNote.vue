@@ -3,8 +3,9 @@
         <AddEditNote ref="addEditNoteRef" v-model="noteContent" bgColor="link" placeholder="Edit note..."
             label="Edit Note">
             <template #buttons>
-                <button @click="$router.back()" class="button is-link is-light">Cancel</button>
-                <button class="button is-link has-background-link" :disabled="!noteContent">Save Note</button>
+                <button @click="$router.back()" class="button is-link is-light mr-2">Cancel</button>
+                <button @click="handleSave" class="button is-link has-background-link" :disabled="!noteContent">Save
+                    Note</button>
             </template>
         </AddEditNote>
     </div>
@@ -12,7 +13,18 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import AddEditNote from '@/components/Notes/AddEditNote.vue';
+import { useNotesStore } from '@/stores/storeNotes';
 
-const noteContent = ref('');
+const notesStore = useNotesStore();
+
+
+const route = useRoute();
+const noteId = route.params.id;
+
+const noteContent = ref('')
+noteContent.value = notesStore.getNoteContent(noteId);
+console.log('>>> ', noteContent.value);
+
 </script>

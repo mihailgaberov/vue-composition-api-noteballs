@@ -4,11 +4,11 @@ export const useNotesStore = defineStore('storeNotes', {
     state: () => ({
         notes: [
             {
-                id: 1,
+                id: '1',
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.',
             },
             {
-                id: 2,
+                id: '2',
                 content: 'This is shorter.',
             }
         ]
@@ -28,6 +28,14 @@ export const useNotesStore = defineStore('storeNotes', {
         },
         editNote({ index, note }) {
             this.notes[index] = note
+        }
+    },
+    getters: {
+        getNoteContent: (state) => {
+            return (id) => {
+                const note = state.notes.find((note) => note.id === id)
+                return note ? note.content : ''
+            }
         }
     }
 })
