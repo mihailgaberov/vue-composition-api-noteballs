@@ -13,7 +13,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import AddEditNote from '@/components/Notes/AddEditNote.vue';
 import { useNotesStore } from '@/stores/storeNotes';
 
@@ -21,10 +21,19 @@ const notesStore = useNotesStore();
 
 
 const route = useRoute();
+const router = useRouter();
+
 const noteId = route.params.id;
 
 const noteContent = ref('')
 noteContent.value = notesStore.getNoteContent(noteId);
-console.log('>>> ', noteContent.value);
 
+const handleSave = () => {
+    const payload = {
+        id: noteId,
+        content: noteContent.value
+    }
+    notesStore.updateNoteContent(payload);
+    router.back();
+}
 </script>
