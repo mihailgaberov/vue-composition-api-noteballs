@@ -34,6 +34,6 @@ const handleSave = () => {
         content: noteContent.value
     }
     notesStore.updateNoteContent(payload);
-    router.back();
+    router.push('/');
 }
 </script>
