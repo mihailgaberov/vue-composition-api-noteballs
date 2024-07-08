@@ -3,8 +3,15 @@
         <label v-if="label" class="label has-text-white">{{ label }}</label>
         <div class="field">
             <div class="control">
-                <textarea ref="textAreaRef" v-model="internalValue" @input="updateValue" class="textarea"
-                    :placeholder="placeholder" v-auto-focus/>
+                <textarea
+                  v-model="internalValue"
+                  v-auto-focus
+                  maxlength="100"
+                  :placeholder="placeholder"
+                  @input="updateValue"
+                  class="textarea"
+                  ref="textAreaRef"
+                />
             </div>
         </div>
         <div class="field is-grouped is-grouped-right">
