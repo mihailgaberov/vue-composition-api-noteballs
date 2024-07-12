@@ -22,7 +22,7 @@
 <script setup>
 /* imports */
 import { onClickOutside } from '@vueuse/core';
-import { ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 
   /* props */
 
@@ -46,4 +46,19 @@ import { ref } from "vue";
 const modalCardRef = ref(null);
 
 onClickOutside(modalCardRef, closeModal);
+
+/* keyboard control */
+onMounted(() => {
+  const handleKeydown = (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  }
+
+  document.addEventListener('keydown', handleKeydown);
+
+  onUnmounted(() => {
+    document.removeEventListener('keydown', handleKeydown);
+  })
+})
 </script>
