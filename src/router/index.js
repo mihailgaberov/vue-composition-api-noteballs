@@ -1,29 +1,29 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import ViewNotes from '@/views/ViewNotes.vue'
-import ViewStats from '@/views/ViewStats.vue'
-import ViewEditNote from '@/views/ViewEditNote.vue'
+import { createRouter, createWebHashHistory } from "vue-router";
+import ViewNotes from "@/views/ViewNotes.vue";
+import ViewStats from "@/views/ViewStats.vue";
+import ViewEditNote from "@/views/ViewEditNote.vue";
 
 const routes = [
-    {
-        path: '/',
-        name: 'notes',
-        component: ViewNotes
-    },
-    {
-        path: '/edit-note/:id',
-        name: 'edit-noet',
-        component: ViewEditNote
-    },
-    {
-        path: '/stats',
-        name: 'stats',
-        component: ViewStats
-    }
-]
+  {
+    path: "/",
+    name: "notes",
+    component: ViewNotes,
+  },
+  {
+    path: "/edit-note/:id",
+    name: "edit-note",
+    component: ViewEditNote,
+  },
+  {
+    path: "/stats",
+    name: "stats",
+    component: ViewStats,
+  },
+];
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    routes
-})
+  history: createWebHashHistory(),
+  routes,
+});
 
-export default router
+export default router;
