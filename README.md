@@ -1,14 +1,8 @@
-# vue-composition-api-noteballs
+# Noteballs
 
-This template should help get you started developing with Vue 3 in Vite.
+A note taking app built as a practical exercise while doing Vue Composition API course.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+[Noteballs app](https://github.com/mihailgaberov/vue-composition-api-noteballs/blob/main/noteballs-app.png)
 
 ## Project Setup
 
